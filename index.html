@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Matt's Sketchpad</title>
+  <link type="text/css" rel="stylesheet" href="css/reset.css">
+  <link type="text/css" rel="stylesheet" href="css/stylesheet.css">
+  <script type="application/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+</head>
+
+<body>
+  <div id="wrapper">
+    <h1> Matt's Sketchpad </h1>
+    <p>Click "New Canvas" to create a new canvas. Hover your mouse over the canvas to start drawing!</p>
+    <div id="controls">
+      <button id="createCanvas">New Canvas</button>
+      <button id="clearScreen">Clear the Screen</button>
+    </div>
+    <div class="colorControl">
+      <label>Base Color</label>
+      <input type="color" id="background" value="#000000">
+      <br>
+      <button id="original"> Original Brush </button>
+      <div class="circle c-original"></div>
+      <br>
+      <button id="randomize">Color Throwup Brush</button>
+      <div class="circle c-randomize"></div>
+
+      <br>
+      <button id="lightlyBrush">Light Black Brush </button>
+      <div class="circle c-lightlyBrush"></div>
+    </div>
+    <div class="container"></div>
+  </div>
+  <script type="application/javascript" src="js/main.js"></script>
+</body>
+
+</html>
