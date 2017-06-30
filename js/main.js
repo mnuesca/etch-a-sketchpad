@@ -36,6 +36,7 @@ $(document).ready(function() {
 function clearScreen() {
   $('.cell').each(function() {
     $(this).removeClass("color");
+    $(this).removeClass("random-color");
     $(this).css("background-color", "rgba(255,255,255)");
   });
 }
@@ -63,38 +64,38 @@ function createCanvas() {
   $('.cell').width(size);
   $('.row').height(size);
 
-  $('input#background').change(changeColor);
+  $('input#background').on("change",changeColor);
 
   $('.cell').hover(function() {
-    if (lightBrush) {
+    if (lightBrush){
       $(this).css("background-color", makeLighter($(this).css("background-color")));
-    } else if (random) {
+    } else if (random && !($(this).hasClass("randomize-color"))) {
       $(this).css("background-color", randomizeColor());
+      $(this).addClass("color");
     } else {
       $(this).css("background-color", color);
+      $(this).addClass("color");
     }
-    $(this).addClass("color");
+
   });
 }
 
 function makeLighter(color) {
-  if (color === "rgb(0, 0, 0)") {
-    console.log("BLACK");
-    return;
-  }
   color = color.replace(/[^\d,]/g, '').split(',');
-  var red = (Math.floor(color[0] - 25.5)).toString(16);
-  var green = (Math.floor(color[1] - 25.5)).toString(16);
-  var blue = (Math.floor(color[2] - 25.5)).toString(16);
-  var lighter_color = "#" + red + green + blue;
+  var red = (Math.floor(color[0] - 25.5));
+  var green = (Math.floor(color[1] - 25.5));
+  var blue = (Math.floor(color[2] - 25.5));
+  if (red <= 0)
+    return "#000000";
+  var lighter_color = "rgb(" + red.toString() + " ," + green.toString() + " ," + blue.toString() + ")";
   return lighter_color;
 
 }
 
 function randomizeColor() {
-  var red = Math.floor((Math.random() * 255) + 1).toString(16);
-  var green = Math.floor((Math.random() * 255) + 1).toString(16);
-  var blue = Math.floor((Math.random() * 255) + 1).toString(16);
-  var color = "#" + red + green;
+  var red = Math.floor((Math.random() * 250 - 1) + 1);
+  var green = Math.floor((Math.random() * 250 -1) + 1);
+  var blue = Math.floor((Math.random() * 250-1) + 1);
+  var color = "rgb(" + red.toString() + " ," + green.toString() + " ," + blue.toString() + ")";
   return color;
 }
